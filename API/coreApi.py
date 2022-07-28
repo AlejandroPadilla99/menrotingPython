@@ -34,7 +34,7 @@ class coreApi:
         try:
             as_dict = response.json()
         except Exception:
-            as_dict {}
+            as_dict = {}
         
         headers = response.headers
         
