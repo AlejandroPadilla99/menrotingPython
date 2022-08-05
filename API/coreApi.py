@@ -4,10 +4,10 @@ import requests
 
 @dataclass
 class Response:
-    status_code = int
-    text = str
-    as_dict = object
-    headers = dict
+    status_code : int
+    text : str
+    as_dict : object
+    headers : dict
     
 
 class coreApi:
@@ -27,7 +27,7 @@ class coreApi:
         response = requests.get(url)
         return self.__get__responses(response)
 
-    def __get_responses(self,response):
+    def __get__responses(self,response):
         status_code = response.status_code
         text = response.text
 
@@ -38,7 +38,7 @@ class coreApi:
         
         headers = response.headers
         
-        return Response (status_code, text, as_dict, headers)
+        return Response(status_code, text, as_dict, headers)
         
     
 
