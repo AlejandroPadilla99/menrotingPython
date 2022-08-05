@@ -3,3 +3,6 @@ pruebas.py
 
 #pytest cache files
 .pytest_cache
+
+#python cache
+__pycache__

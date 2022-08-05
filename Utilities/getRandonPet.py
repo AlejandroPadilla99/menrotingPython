@@ -1,17 +1,33 @@
-from dbm import dumb
-from faker import Faker
+import random
 import json
+from dbm import dumb
+from xml.etree.ElementTree import Element
+from faker import Faker
+from faker.providers import DynamicProvider
 
-fake = faker() 
+fake = Faker() 
+
+#Providers
+pet_category_provider = DynamicProvider(
+    provider_name = "pet_category",
+    elements = ["Fish", "Dog", "Cat", "Reptile", "Bird"]
+)
+pet_status_provider = DynamicProvider(
+    provider_name = "pet_status",
+    elements = ["availeble", "pending", "sold"]
+)
+
+fake.add_provider(pet_category_provider)
+fake.add_provider(pet_status_provider)
 
 
 def get_randon_pet():
-    data = { }
+
     pet = {
-        "id": 0,
+        "id": random.randint(0,9223372036854053000),
         "category": {
-            "id": 0,
-            "name": "string"
+            "id": random.randint(0,9223372036854053000),
+            "name": fake.pet_category()
         },
         "name": "doggie",
         "photoUrls": [
@@ -19,12 +35,13 @@ def get_randon_pet():
         ],
         "tags": [
             {
-                "id": 0,
+                "id": random.randint(0,9223372036854053000),
                 "name": "string"
             }
         ], 
-        "status": "available"
+        "status": fake.pet_status()
     }
 
-    petJson = json.dumb(pet)
-    return data , pet
+    petJson = json.dumps(pet,indent = 4)
+
+    return pet, petJson
