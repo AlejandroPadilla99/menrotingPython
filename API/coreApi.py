@@ -19,7 +19,7 @@ class CoreApi:
         response = requests.post(url, data=playload, headers=headers)
         return self.__get__responses(response)
     
-    def update(self, url, playload, headers):
+    def put(self, url, playload, headers):
         response = requests.post(url, data=playload, headers=headers)
         return self.__get__responses(response)
 

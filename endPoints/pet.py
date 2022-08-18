@@ -27,13 +27,15 @@ class PetEndPoints(baseHeader):
         #params = f"findByStatus?status="
         pass
     
-    def get_pet_by_id(self, petId=None):
-        end_point = get_url_for_pet_by_id("/pet/",petId) 
+    def get_pet_by_id(self, pet_id=None):
+        end_point = get_url_for_pet_by_id("/pet/",pet_id) 
         response = self.request.get(self.base_url+end_point)
         return response
 
     def update_pet_with_form_data(self, petId=None, name=None, status=None):
         pass
     
-    def delete_pet_by_id(self, petId):
-        pass
+    def delete_pet_by_id(self, pet_id=None):
+        end_point = get_url_for_pet_by_id("/pet/",pet_id) 
+        response = self.request.delete(self.base_url+end_point)
+        return response

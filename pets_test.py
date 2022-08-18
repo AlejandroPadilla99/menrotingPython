@@ -16,5 +16,13 @@ def test_find_pet_by_id():
     response = pets.get_pet_by_id(pet["id"])
     assert response.status_code == 200
 
+def test_update_pet():
+    response = pets.update_pet(pet_json)
+    assert response.status_code == 200
+
+def test_delete_pet_by_id():
+    response = pets.delete_pet_by_id(pet["id"])
+    assert response.status_code == 200
+
 
 
