@@ -10,7 +10,7 @@ class Response:
     headers : dict
     
 
-class coreApi:
+class CoreApi:
     def get(self, url):
         response = requests.get(url)
         return self.__get__responses(response)
