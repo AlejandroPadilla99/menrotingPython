@@ -3,7 +3,6 @@ from config import URL
 from API.coreApi import CoreApi
 from endPoints.baseHeader import baseHeader
 from Utilities.makeUrl import get_url_for_pet_by_id
-#from Utilities.getRandonPet import get_randon_pet
 
 
 class PetEndPoints(baseHeader):
