@@ -1,5 +1,6 @@
+from urllib import response
 from config import URL
-from API.coreApi import coreApi
+from API.coreApi import CoreApi
 from endPoints.baseHeader import baseHeader
 
 
@@ -7,7 +8,7 @@ class usersEndPoint(baseHeader):
     def __init__(self):
         super().__init__()
         self.base_url = URL
-        self.request = coreApi()
+        self.request = CoreApi()
     
     def create_array_users(self, body=None):
         pass
@@ -33,6 +34,7 @@ class usersEndPoint(baseHeader):
         return response
     
     def create_user(self, body=None):
-        pass 
+        response  = self.request.post(self.base_url+"/user", body, self.headers)
+        return response
     
     

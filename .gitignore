@@ -1,8 +1,9 @@
-#randon file to test how works some librarys 
+#random files
 pruebas.py
+back-end-goals.txt
 
 #pytest cache files
 .pytest_cache
 
 #python cache
-__pycache__
+**/__pycache__/

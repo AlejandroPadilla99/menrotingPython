@@ -11,23 +11,23 @@ class Response:
     
 
 class CoreApi:
-    def get(self, url):
+    def get(self, url: str) -> Response:
         response = requests.get(url)
         return self.__get__responses(response)
 
-    def post(self, url, playload, headers):
+    def post(self, url: str, playload: str, headers: dict) -> Response:
         response = requests.post(url, data=playload, headers=headers)
         return self.__get__responses(response)
     
-    def put(self, url, playload, headers):
+    def put(self, url: str, playload: str, headers: dict) -> Response:
         response = requests.post(url, data=playload, headers=headers)
         return self.__get__responses(response)
 
-    def delete(self, url):
+    def delete(self, url: str) -> Response:
         response = requests.get(url)
         return self.__get__responses(response)
 
-    def __get__responses(self,response):
+    def __get__responses(self, response: str) -> Response:
         status_code = response.status_code
         text = response.text
 
