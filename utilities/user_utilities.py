@@ -4,7 +4,7 @@ from faker import Faker
 
 faker = Faker()
 
-class UserUtilities():
+class UserUtilities:
     def __init__(self) -> None:
         self.id  = random.randint(1,100000000000)
         self.user_as_dic = None

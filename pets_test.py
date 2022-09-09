@@ -1,6 +1,6 @@
-from endPoints.pet import PetEndPoints
-from Utilities.schemas import Schemas
-from Utilities.pet_utilities import PetUtilities
+from api.pet import PetEndPoints
+from utilities.schemas import Schemas
+from utilities.pet_utilities import PetUtilities
 
 pets = PetEndPoints() 
 schemas = Schemas()
@@ -12,7 +12,7 @@ def test_create_pet():
     pet = PetUtilities()
 
     #test
-    response = pets.add_new_pet(pet.pet_as_json)
+    response = pets.add_new_pet(body=pet.pet_as_json)
 
     assert response.status_code == 200
     #assert response.as_dict.keys() == pet.pet_as_dic.keys()
@@ -24,10 +24,10 @@ def test_find_pet_by_id():
     
     #preconditions
     pet = PetUtilities()
-    pets.add_new_pet(pet.pet_as_json)
+    pets.add_new_pet(body=pet.pet_as_json)
 
     #test
-    response = pets.get_pet_by_id(pet.id)
+    response = pets.get_pet_by_id(pet_id=pet.id)
 
     assert response.status_code == 200
 
@@ -37,11 +37,11 @@ def test_update_pet():
 
     #preconditons
     pet = PetUtilities()
-    pets.add_new_pet(pet.pet_as_json)
+    pets.add_new_pet(body=pet.pet_as_json)
     pet.make_randon_pet()
 
     #test
-    response = pets.update_pet(pet.pet_as_json)
+    response = pets.update_pet(body=pet.pet_as_json)
 
     assert response.status_code == 200
 
@@ -51,10 +51,10 @@ def test_delete_pet_by_id():
 
     #preconditions
     pet = PetUtilities()
-    pets.add_new_pet(pet.pet_as_json)
+    pets.add_new_pet(body=pet.pet_as_json)
 
     #test
-    response = pets.delete_pet_by_id(pet.id)
+    response = pets.delete_pet_by_id(pet_id=pet.id)
     assert response.status_code == 200
 
     del pet

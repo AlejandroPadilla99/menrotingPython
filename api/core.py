@@ -27,7 +27,8 @@ class CoreApi:
         response = requests.get(url)
         return self.__get__responses(response)
 
-    def __get__responses(self, response: str) -> Response:
+    @staticmethod
+    def __get__responses(response: str) -> Response:
         status_code = response.status_code
         text = response.text
 

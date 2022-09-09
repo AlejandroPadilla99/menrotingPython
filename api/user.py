@@ -1,7 +1,6 @@
-from urllib import response
 from config import URL
-from API.coreApi import CoreApi
-from endPoints.baseHeader import baseHeader
+from api.core import CoreApi
+from api.base_header import baseHeader
 
 
 class usersEndPoint(baseHeader):
