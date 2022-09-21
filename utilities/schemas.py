@@ -1,5 +1,4 @@
-import json
-from unicodedata import category
+#lib
 from cerberus import Validator
 
 class Schemas():
@@ -24,6 +23,15 @@ class Schemas():
         }
 
         return self._validate_schema(schema_model=schema_pet, schema_to_validate=response_text)
+
+    def validate_user_schema(self, response_dict: dict) -> bool:
+        schema_user = {
+            'code':{'type':'integer'},
+            'type':{'type':'string'},
+            'message':{'type':'string'}
+        }
+
+        return self._validate_schema(schema_model=schema_user, schema_to_validate=response_dict)
 
     @staticmethod
     def _validate_schema(schema_model: dict, schema_to_validate: dict) -> bool:
