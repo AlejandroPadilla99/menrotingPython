@@ -3,31 +3,57 @@ from unicodedata import category
 from cerberus import Validator
 
 class Schemas():
-    
-    def __init__(self):
-        category_schema = {
-            'id': {'type': 'integer'},
-            'name': {'type': 'string'},
-        }
 
-        tags_schema = {
-            'id': {'type': 'integer'},
-            'name': {'type': 'string'},
-        }
+    def validate_pet_schema(self, response_text: dict) -> bool: 
+        category_schema = self._custom_dict_schema(
+            id='integer',
+            name='string'
+        )
+        tags_schema = self._custom_dict_list_schema(
+            id='integer',
+            name='string'
+        )
 
-        self.schema_pet = {
+        schema_pet = {
             'id': {'type': 'integer'},
-            'category': {'type': 'list',
-               'schema': category_schema
-            },
+            'category':category_schema,
             'name': {'type': 'string'},
-            'tags': {'type': 'list',
-                'schema': tags_schema
-            },
+            'photoUrls': {'type': 'list','schema':{ 'type': 'string'}},
+            'tags': tags_schema,
             'status': {'type': 'string'}
         }
 
-    def validate_pet_schema(self, response_text):
-        validator = Validator(self.schema_pet, require_all=True)
-        response_schema_json = json.loads(response_text)
-        return validator.validate(response_schema_json)
+        return self._validate_schema(schema_model=schema_pet, schema_to_validate=response_text)
+
+    @staticmethod
+    def _validate_schema(schema_model: dict, schema_to_validate: dict) -> bool:
+        validator = Validator(schema_model, require_all=True)
+        return validator.validate(schema_to_validate)
+
+    @staticmethod 
+    def _custom_dict_list_schema(**custom_attributes) -> dict:
+        item_schema = {}
+
+        for key, value in custom_attributes.items():
+            item_schema[key] = {'type': value}
+        
+        dict_list_schema = {
+            'type': 'list', 'schema': {
+                'type': 'dict', 'schema': item_schema
+            }
+        }
+
+        return dict_list_schema
+
+    @staticmethod
+    def _custom_dict_schema(**custom_atributes) -> dict:
+        item_schema = {}
+        
+        for key, value in custom_atributes.items():
+            item_schema[key] = {'type': value}
+        
+        dict_schema = {
+            'type': 'dict', 'schema': item_schema
+        }
+
+        return dict_schema

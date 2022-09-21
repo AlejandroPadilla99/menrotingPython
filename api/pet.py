@@ -2,7 +2,6 @@ from urllib import response
 from config import URL
 from api.core import CoreApi, Response
 from api.base_header import baseHeader
-from utilities.makeUrl import get_url_for_pet_by_id
 
 
 class PetEndPoints(baseHeader):
@@ -20,11 +19,9 @@ class PetEndPoints(baseHeader):
         return response
    
     def get_pet_by_id(self, pet_id: str) -> Response:
-        end_point = get_url_for_pet_by_id("/pet/",pet_id) 
-        response = self.request.get(self.base_url+end_point)
+        response = self.request.get(self.base_url+f'/pet/{pet_id}')
         return response
    
     def delete_pet_by_id(self, pet_id: str) -> Response:
-        end_point = get_url_for_pet_by_id("/pet/",pet_id) 
-        response = self.request.delete(self.base_url+end_point)
+        response = self.request.delete(self.base_url+f'/pet/{pet_id}')
         return response
