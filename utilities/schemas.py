@@ -1,7 +1,7 @@
 #lib
 from cerberus import Validator
 
-class Schemas():
+class Schemas:
 
     def validate_pet_schema(self, response_text: dict) -> bool: 
         category_schema = self._custom_dict_schema(

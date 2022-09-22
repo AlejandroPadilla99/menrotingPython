@@ -1,6 +1,6 @@
-from dataclasses import dataclass
-
+#lib
 import requests
+from dataclasses import dataclass
 
 @dataclass
 class Response:
@@ -11,6 +11,7 @@ class Response:
     
 
 class CoreApi:
+
     def get(self, url: str) -> Response:
         response = requests.get(url)
         return self.__get__responses(response)
@@ -40,6 +41,3 @@ class CoreApi:
         headers = response.headers
         
         return Response(status_code, text, as_dict, headers)
-        
-    
-

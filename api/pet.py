@@ -1,8 +1,7 @@
-from urllib import response
+#local
 from config import URL
 from api.core import CoreApi, Response
 from api.base_header import baseHeader
-
 
 class PetEndPoints(baseHeader):
     def __init__(self):
