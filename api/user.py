@@ -1,9 +1,10 @@
 from config import URL
-from api.core import CoreApi
+from api.core import CoreApi, Response
 from api.base_header import baseHeader
 
 
 class usersEndPoint(baseHeader):
+
     def __init__(self):
         super().__init__()
         self.base_url = URL
@@ -28,11 +29,11 @@ class usersEndPoint(baseHeader):
         response = self.request.get(self.base_url+"/user/login")
         return response
     
-    def logout_user(self):
+    def logout_user(self) -> Response :
         response = self.request.get(self.base_url+"/user/logout")
         return response
     
-    def create_user(self, body=None):
+    def create_user(self, body: str) -> Response:
         response  = self.request.post(self.base_url+"/user", body, self.headers)
         return response
     

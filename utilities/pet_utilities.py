@@ -1,3 +1,5 @@
+
+#lib
 import random
 import json
 from dbm import dumb
@@ -7,7 +9,7 @@ from faker.providers import DynamicProvider
 
 fake = Faker() 
 
-class PetUtilities():
+class PetUtilities:
     
     def __init__(self) -> None:
         self.id = random.randint(0,9223372036854053000) 
