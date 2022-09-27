@@ -10,6 +10,19 @@ from faker.providers import DynamicProvider
 fake = Faker() 
 
 class PetUtilities:
+    '''
+    A class used to represent a pet and provide some functions to modify the pet
+
+    Atributes
+    ---------
+
+    id : integer
+        a unique value for the pet
+    pet_as_json : str
+        a string that contains all the pet information in format json
+    pet_as_dic : dict
+        a dict that containes all the pet information
+    '''
     
     def __init__(self) -> None:
         self.id = random.randint(0,9223372036854053000) 
@@ -18,10 +31,15 @@ class PetUtilities:
     
     
     def make_pet_to_json(self) -> None: 
+        #check indent = 4 
         self.pet_as_json = json.dumps(self.pet_as_dic,indent = 4)
 
 
     def make_randon_pet(self) -> None:
+        '''
+        Fill pet_as_json and pet_as_dic with randon valid information
+
+        '''
         self.pet_as_dic = {
             "id": self.id,
             "category": {

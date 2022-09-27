@@ -23,7 +23,11 @@ Use this commant to install the requirements
 ```
 
 ## Run tests cases
-
-```Bash 
-    pytest sample_test.py
+Run a test.py file
+```Python
+    python -m pytest sample_test.py
+```
+Also you can run a folder of test files 
+```Python
+    python -m pytest sample_folder/
 ```

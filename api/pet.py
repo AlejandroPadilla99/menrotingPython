@@ -24,3 +24,6 @@ class PetEndPoints(baseHeader):
     def delete_pet_by_id(self, pet_id: str) -> Response:
         response = self.request.delete(self.base_url+f'/pet/{pet_id}')
         return response
+
+
+# como ver si falla en esta seccion 
