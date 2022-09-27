@@ -1,6 +1,5 @@
 #lib
 from selenium.webdriver.common.by import By
-from config import URL
 #local
 from selenium_ui.config_selenium import URL_SE
 

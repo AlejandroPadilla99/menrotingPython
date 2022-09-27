@@ -1,9 +1,9 @@
 #lib
-from re import A
 from assertpy import assert_that
 #local
 from selenium_ui.pages.login import Login
 from selenium_ui.pages.register_user import RegisterUser
+from selenium_ui.pages.buy_fish import BuyFish
 from selenium_ui.utilities_selenium.user_utilities_se import User
 
 def test_login_in_website(browser):
@@ -15,7 +15,7 @@ def test_login_in_website(browser):
     login_page.load_page()
     login_page.enter_data(username='Alejandro',password='12345')
 
-    assert_that(login_page.get_result_login(), description='hola').is_equal_to('Welcome Alejandro!')
+    assert_that(login_page.get_result_login()).is_equal_to('Welcome alejandro!')
 
     #delete data
     del login_page
@@ -40,6 +40,25 @@ def test_create_user(browser):
     assert_that(login_page.get_result_login(), description='hola').is_equal_to(f'Welcome {user.account_data["first_name"]}!')
 
     del login_page, register_user
+
+def test_buy_pet(browser):
+    
+    #preconditions
+    login = Login(browser=browser)
+    buy_fish = BuyFish(browser=browser)
+
+    login.load_page()
+    login.enter_data(username='Alejandro', password='12345')
+
+    #test
+    buy_fish.select_fish_store()
+    buy_fish.select_fish()
+    buy_fish.select_specie_fish()
+    buy_fish.select_checkout_button()
+    buy_fish.select_continue_button()
+    buy_fish.select_confirm_button()
+
+
 
     
 
