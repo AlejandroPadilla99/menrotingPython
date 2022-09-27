@@ -6,4 +6,7 @@ def assert_validate_dic(dic_response: dict, dic_correct : dict) -> None:
     with soft_assertions():
         for key, value in dic_correct.items():
             assert_that(dic_response[key]).is_equal_to(value)
- 
+
+
+# dic_response -> 
+#def assert_validate_dict(target: dict, expected : dict) -> None:

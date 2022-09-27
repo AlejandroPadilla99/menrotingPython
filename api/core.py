@@ -11,7 +11,6 @@ class Response:
     
 
 class CoreApi:
-
     def get(self, url: str) -> Response:
         response = requests.get(url)
         return self.__get__responses(response)
