@@ -20,6 +20,7 @@ def test_login_in_website(browser):
     #delete data
     del login_page
 
+'''
 def test_create_user(browser):
 
     #preconditions
@@ -58,9 +59,6 @@ def test_buy_pet(browser):
     buy_fish.select_continue_button()
     buy_fish.select_confirm_button()
 
+    del login, buy_fish
 
-
-    
-
-
-    
+'''
