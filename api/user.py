@@ -8,32 +8,50 @@ class usersEndPoint(baseHeader):
     def __init__(self):
         super().__init__()
         self.base_url = URL
-        self.request = CoreApi()
-    
-    def create_array_users(self, body=None):
-        pass
-    
-    def create_list_users(self, body=None):
-        pass
-    
-    def get_user_by_username(self, name=None):
-        pass
-    
-    def update_user_by_username(self, username=None, body=None):
-        pass
-    
-    def delete_user_by_username(self, username=None, body=None):
-        pass
-    
-    def login_user(self, username=None, password=None ):
+        self.request = CoreApi() 
+
+    def login_user(self, username: str, password: str )-> Response:
+        '''
+        Parameters
+        ----------
+        username: str
+            the user name of the user
+        password: str
+            the password of the user 
+        
+        Return
+        ------
+        Response: Object
+            A object that contain the response from the request 
+        '''
+
         response = self.request.get(self.base_url+"/user/login")
         return response
     
     def logout_user(self) -> Response :
+        '''
+        Return
+        ------
+        Response: Object
+            A object that contain the response from the request
+        '''
+
         response = self.request.get(self.base_url+"/user/logout")
         return response
     
     def create_user(self, body: str) -> Response:
+        ''' 
+        Parameters
+        ----------
+        body: str
+            A string with the payload in json format 
+
+        Return
+        ------
+        Response: Object
+            A object that contain the response from the request
+        '''
+       
         response  = self.request.post(self.base_url+"/user", body, self.headers)
         return response
     
