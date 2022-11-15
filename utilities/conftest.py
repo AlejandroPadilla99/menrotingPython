@@ -19,4 +19,4 @@ def browser():
     yield driver
 
     #Quit the WebDriver instance for the cleanup
-    driver.quit()
+    #driver.quit()
