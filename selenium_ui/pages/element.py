@@ -1,8 +1,9 @@
 
 class Element:
-    def __init__(self, driver: object, method: str, key: str) -> None:
+    #change for tuple
+    def __init__(self, driver: object, locator: tuple) -> None:
         self.driver = driver
-        self.element = self._find_element(method=method, key=key)
+        self.element = self._find_element(*locator)
     
     def click(self):
         self.element.click()
@@ -13,5 +14,5 @@ class Element:
     def send_keys(self, data: str) -> None:
         self.element.send_keys(data)
     
-    def _find_element(self, method: str, key: str) -> object:
-        return self.driver.find_element(method, key)
+    def _find_element(self, locator: tuple) -> object:
+        return self.driver.find_element(locator[0], locator[1])

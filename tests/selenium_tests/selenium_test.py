@@ -7,8 +7,7 @@ import time
 from selenium_ui.pages.main_page import MainPage
 from selenium_ui.pages.sing_up import SingUpPage
 from selenium_ui.pages.register_page import RegisterPage
-from selenium_ui.pages.fish_section import FishPage
-from selenium_ui.pages.angelfish_page import AngelFishPage
+from selenium_ui.pages.shopping_cart_page import ShoppingCartPage
 from selenium_ui.utilities_selenium.user_utilities_se import User
 
 #fixture
@@ -79,5 +78,19 @@ def test_register_in_website():
     register_page.mylist().click()
     register_page.mybanner().click()
     time.sleep(10)
-    
 
+def test_buy_by_search_bar():
+
+    browser.get('https://petstore.octoperf.com/actions/Catalog.action')
+    
+    #Pages
+    main_page = MainPage(driver=browser)
+    shopping_cart = ShoppingCartPage(driver=browser)
+    
+    #test
+    main_page.search_bar().send_keys(data='dog')
+    main_page.search_button().click()
+    main_page.firts_element_search().click()
+    main_page.add_cart().click()
+    shopping_cart.checkout().click()
+    

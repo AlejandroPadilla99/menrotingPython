@@ -7,9 +7,9 @@ class ShoppingCartPage():
     def __init__(self, driver) -> None:
         self.driver = driver
     
-    locators = {
-        'continue': (By.XPATH, "(//table//input)[1]"), 
-    }
+    class locators():
+        continue_button = (By.XPATH, "(//table//input)[1]"),
+    
 
     def continue_button(self) -> Element:
-        return Element(driver=self.driver, method=self.locators.get('continue')[0], key=self.locators.get('continue')[1])  
+        return Element(driver=self.driver, method=self.locators.continue_button)  
