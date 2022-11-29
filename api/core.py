@@ -1,6 +1,14 @@
 #lib
 import requests
+import logging
 from dataclasses import dataclass
+
+
+#logging
+logging.basicConfig(filename="newfiloe.log", format='%(asctime)s %(message)s', filemode='w')
+
+logger = logging.getLogger()
+logger.setLevel(logging.DEBUG)
 
 @dataclass
 class Response:
@@ -13,19 +21,34 @@ class Response:
 class CoreApi:
     def get(self, url: str) -> Response:
         response = requests.get(url)
+        self.__print_logs(method='GET', url=url, playload="", headers="", response=response)
         return self.__get__responses(response)
 
     def post(self, url: str, playload: str, headers: dict) -> Response:
         response = requests.post(url, data=playload, headers=headers)
+        self.__print_logs(method='POST', url=url, playload=playload, headers=headers, response=response)
         return self.__get__responses(response)
     
     def put(self, url: str, playload: str, headers: dict) -> Response:
         response = requests.post(url, data=playload, headers=headers)
+        self.__print_logs(method='PUT', url=url, playload=playload, headers=headers, response=response)
         return self.__get__responses(response)
 
     def delete(self, url: str) -> Response:
         response = requests.get(url)
+        self.__print_logs(method='DELETE', url=url, playload="", headers="", response=response)
         return self.__get__responses(response)
+
+    @staticmethod
+    def __print_logs(method, url, playload, headers, response) -> None:
+        logger.debug("---------- Request -------------")
+        logger.info("mehtod = " + method)
+        logger.info("url = " + url)
+        logger.info("body = " + playload)
+        logger.info("headers = " + str(headers))
+        logger.debug("---------- Response ------------")
+        logger.info("status code = " + str(response.status_code))
+        logger.info("body = " + response.text)
 
     @staticmethod
     def __get__responses(response: str) -> Response:
