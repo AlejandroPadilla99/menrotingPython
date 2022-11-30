@@ -4,42 +4,23 @@ from assertpy import assert_that
 import time
 
 #local
+from selenium_ui.pages.base_page import BasePage
 from selenium_ui.pages.main_page import MainPage
 from selenium_ui.pages.sing_up import SingUpPage
 from selenium_ui.pages.register_page import RegisterPage
 from selenium_ui.pages.shopping_cart_page import ShoppingCartPage
 from selenium_ui.utilities_selenium.user_utilities_se import User
 
-#fixture
-#from utilities.conftest import browser
-from selenium import webdriver
-from selenium.webdriver.chrome.service import Service
-from webdriver_manager.chrome import ChromeDriverManager
-
-
-# Initialize the ChromeDriver instance
-service = Service(executable_path=ChromeDriverManager().install())
-options = webdriver.ChromeOptions()
-browser = webdriver.Chrome(service=service, options=options)
-
-# Make its calls wait up to 10 second for element to appear
-browser.implicitly_wait(time_to_wait=10)
-
-#return the WebDriver instance for the setup
-#yield driver
-
-#Quit the WebDriver instance for the cleanup
-#driver.quit()
 
 def test_login_in_website():
 
-    browser.get('https://petstore.octoperf.com/actions/Account.action?signonForm=')
-
     #Pages
-    main_page = MainPage(driver=browser)
-    sing_up_page = SingUpPage(driver=browser)
+    base_page = BasePage() 
+    main_page = MainPage()
+    sing_up_page = SingUpPage()
 
     #test
+    base_page.return_to_base__page()
     main_page.sing_in().click()
     sing_up_page.username().send_keys(data='test')
     sing_up_page.password().send_keys(data='12345')
@@ -47,17 +28,18 @@ def test_login_in_website():
 
 def test_register_in_website():
     
-    browser.get('https://petstore.octoperf.com/actions/Account.action?signonForm=')
 
     #precondition
     user = User()
     user.create_account_data()
     #Pages
-    main_page = MainPage(driver=browser)
-    sing_up_page = SingUpPage(driver=browser)
-    register_page = RegisterPage(driver=browser)
+    base_page = BasePage()
+    main_page = MainPage()
+    sing_up_page = SingUpPage()
+    register_page = RegisterPage()
 
     #test
+    base_page.return_to_base__page()
     main_page.sing_in().click()
     sing_up_page.register().click()
     register_page.user_id().send_keys(data='test')
@@ -77,20 +59,18 @@ def test_register_in_website():
     #register_page.favourite_category().select_by_value(data='CATS')
     register_page.mylist().click()
     register_page.mybanner().click()
-    time.sleep(10)
 
 def test_buy_by_search_bar():
-
-    browser.get('https://petstore.octoperf.com/actions/Catalog.action')
-    
+ 
     #Pages
-    main_page = MainPage(driver=browser)
-    shopping_cart = ShoppingCartPage(driver=browser)
+    base_page = BasePage()
+    main_page = MainPage()
+    shopping_cart = ShoppingCartPage()
     
     #test
+    base_page.return_to_base__page()
     main_page.search_bar().send_keys(data='dog')
     main_page.search_button().click()
     main_page.firts_element_search().click()
     main_page.add_cart().click()
-    shopping_cart.checkout().click()
-    
+    shopping_cart.checkout().click() 
