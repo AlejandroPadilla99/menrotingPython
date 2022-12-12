@@ -1,15 +1,15 @@
 #lib
 from selenium.webdriver.common.by import By
+
 #local
+from selenium_ui import driver
 from selenium_ui.pages.element import Element
 
 
-class OderPage():
-    def __init__(self, driver: object) -> None:
-        self.driver = driver
+class OderPage:
 
-    class locators():
+    class locators:
         confirm = (By.XPATH, "//a[text()='Confirm']")
 
     def confirm(self) -> Element:
-        return Element(driver=self.driver, locator=self.locators.confirm)
+        return Element(driver, locator=self.locators.confirm)

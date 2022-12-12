@@ -2,19 +2,19 @@
 from selenium.webdriver.common.by import By
 #local
 from selenium_ui import driver
-from selenium_ui.pages.base_page import BasePage
 from selenium_ui.pages.element import Element
 
 
 
-class MainPage(BasePage):
-    def __init__(self):
-        super().__init__()
-
-    class locators():
+class MainPage:
+   
+    class locators:
         
         sing_in = (By.XPATH, "/html/body/div[1]/div[2]/div/a[2]")
+        sing_out = (By.XPATH, "//a[text()='Sign Out']")
+        my_account = (By.XPATH, "//a[text()='My Account']")
         search_bar =  (By.XPATH, "//input[@name='keyword']")
+        welcome = (By.ID, "WelcomeContent")
         search_button = (By.XPATH, "//input[@name='searchProducts']")
         fish_section = (By.XPATH, "//img[contains(@src,'fish_icon')]")
         dogs_section = (By.XPATH, "//img[contains(@src,'dogs_icon')]")
@@ -22,12 +22,22 @@ class MainPage(BasePage):
         firts_element_search = (By.XPATH, "(//tbody//td//a)[2]")
         add_cart = (By.XPATH, "(//table//tr//td)[5]")
 
+
     def sing_in(self):
         return Element(driver, locator=self.locators.sing_in)
+
+    def sing_out(self):
+        return Element(driver, locator=self.locators.sing_out)
+
+    def my_account(self):
+        return Element(driver, locator=self.locators.my_account)
 
     def search_bar(self):
         return Element(driver, locator=self.locators.search_bar)
 
+    def welcome(self):
+        return Element(driver, locator=self.locators.welcome)
+    
     def search_button(self):
         return Element(driver, locator=self.locators.search_button)
     

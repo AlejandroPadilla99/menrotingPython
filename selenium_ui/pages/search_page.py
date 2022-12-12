@@ -1,12 +1,18 @@
-from seleniumpagefactory import PageFactory
+#lib
+from selenium.webdriver.common.by import By
 
-class SearchPage(PageFactory):
-    def __init__(self, driver):
-        self.driver = driver
+#local
+from selenium_ui import driver
+from selenium_ui.pages.element import Element
+
+class SearchPage:
+   
+    class locators:
+       return_to_main =  (By.XPATH, "//a[contains(.,'Return to Main Menu')]")
+       item = (By.XPATH, "(//a[contains(@href, 'K9-BD-01')])[2]")
     
-    locators = {
-       'return_to_main': ("XPATH", "//a[contains(.,'Return to Main Menu')]")
-    }
+    def return_to_main(self) -> Element:
+        return Element(driver, locator=self.locators.return_to_main)
 
-    def click_return_to_main(self):
-        self.return_to_main.click()
+    def item(self) -> Element:
+        return Element(driver, locator=self.locators.item)
