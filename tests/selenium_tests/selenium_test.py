@@ -6,30 +6,19 @@ import time
 
 #fixtures
 from selenium_ui.selenium_fixtures.fixtures import base, main, sing_up, register, shopping_cart, payment_details, order_page
+from selenium_ui.utilities_selenium.user_utilities_se import User
 
-
-def test_login_in_website(base, main, sing_up):
-
-    #test
-    print(base)
-    base.return_to_base_page()
-    main.sing_in().click()
-    sing_up.username().send_keys(data='test19')
-    sing_up.password().clean_text()
-    sing_up.password().send_keys(data='12345')
-    #sing_up.login().click()
-    #assert_that(main.welcome().get_text()).contains('Welcome')
+#User
+user = User()
 
 def test_register_in_website(base, main, sing_up, register):
-    user = 'test00000000020'
     
     #test
-    print(base)
     base.return_to_base_page()
     main.sing_in().click()
     sing_up.register().click()
-    register.user_id().send_keys(data=user)
-    register.new_password().send_keys(data='12345')
+    register.user_id().send_keys(data=user.user_credentials.get('id'))
+    register.new_password().send_keys(data=user.user_credentials.get('password'))
     register.repeat_password().send_keys(data='12345')
     register.first_name().send_keys(data='Juan')
     register.last_name().send_keys(data='Perez')
@@ -47,29 +36,29 @@ def test_register_in_website(base, main, sing_up, register):
     register.mybanner().click()
     register.save_account().click()
     main.sing_in().click()
-    sing_up.username().send_keys(data=user)
+    sing_up.username().send_keys(data=user.user_credentials.get('id'))
     sing_up.password().clean_text()
-    sing_up.password().send_keys(data='12345')
+    sing_up.password().send_keys(data=user.user_credentials.get('password'))
     sing_up.login().click()
 
     #print(main.welcome().get_text(), " = this is the text")
     #assert_that(main.welcome().get_text()).contains('Welcome')
-    assert_that(main.welcome().element_exit()).is_true()
-    assert_that(main.sing_out().element_exit()).is_true()
-    assert_that(main.my_account().element_exit()).is_true()
+    assert_that(main.welcome().element_exit(time=5)).is_true()
+    assert_that(main.sing_out().element_exit(time=5)).is_true()
+    assert_that(main.my_account().element_exit(time=5)).is_true()
+    assert_that(main.main_picture().element_exit(time=5)).is_true()
 
 def test_buy_by_search_bar(base, main, shopping_cart, payment_details, order_page):
-    print(base)
-    pass
     #test
-    '''
     base.return_to_base_page()
     main.search_bar().send_keys(data='dog')
     main.search_button().click()
     main.firts_element_search().click()
     main.add_cart().click()
     shopping_cart.checkout().click()
+    payment_details.continue_button().click()
     order_page.confirm().click()
-`
-    '''
-    
+
+    assert_that(payment_details.thank_you().element_exit(time=5)).is_true()
+
+

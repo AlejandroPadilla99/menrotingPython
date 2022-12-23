@@ -18,10 +18,8 @@ class ShoppingCartPage():
     def remove(self) -> Element:
         return Element(driver=driver, locator=self.locators.remove)
 
-    def update_cart(self):
+    def update_cart(self) -> Element:
         return Element(driver=driver, locator=self.locators.update_cart)
 
     def checkout(self) -> Element:
         return Element(driver=driver, locator=self.locators.checkout)
-    
-    

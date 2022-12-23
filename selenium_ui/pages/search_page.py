@@ -12,7 +12,7 @@ class SearchPage:
        item = (By.XPATH, "(//a[contains(@href, 'K9-BD-01')])[2]")
     
     def return_to_main(self) -> Element:
-        return Element(driver, locator=self.locators.return_to_main)
+        return Element(driver=driver, locator=self.locators.return_to_main)
 
     def item(self) -> Element:
-        return Element(driver, locator=self.locators.item)
+        return Element(driver=driver, locator=self.locators.item)

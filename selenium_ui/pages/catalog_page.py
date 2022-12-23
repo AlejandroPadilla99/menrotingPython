@@ -11,4 +11,4 @@ class CatalogPage():
         add_to_cart = (By.XPATH, "//a[text()='Add to Cart']")
 
     def add_to_cart(self) -> Element:
-        return Element(driver, locator=self.locators.add_to_cart)
+        return Element(driver=driver, locator=self.locators.add_to_cart)

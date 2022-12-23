@@ -9,7 +9,7 @@ class User:
     '''
     
     def __init__(self) -> None:
-        self.id = faker.name()
+        self.id = faker.user_name()
         self.user_credentials = None
         self.account_data = None
         self.profile_data = None

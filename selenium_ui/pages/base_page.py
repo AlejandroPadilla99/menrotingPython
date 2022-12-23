@@ -1,3 +1,4 @@
+#local
 from selenium_ui import driver
 
 class BasePage():
