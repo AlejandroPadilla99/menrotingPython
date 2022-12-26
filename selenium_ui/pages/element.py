@@ -13,7 +13,11 @@ class Element:
         self._find_element().select_by_value(data)
     
     def send_keys(self, data: str) -> None:
+        self._find_element().clear()
         self._find_element().send_keys(data)
+
+    def get_attribute(self, name: str) -> str:
+        return self._find_element().get_attribute(name=name)
     
     def get_text(self) -> None:
         self._find_element().text
