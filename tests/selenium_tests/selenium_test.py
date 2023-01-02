@@ -5,18 +5,18 @@ import time
 
 
 #fixtures
-from selenium_ui.selenium_fixtures.fixtures import base, main, sing_up, register, shopping_cart, payment_details, order_page, user_information
+from selenium_ui.selenium_fixtures.fixtures import base, main, sign_up, register, shopping_cart, payment_details, order_page, user_information
 from selenium_ui.utilities_selenium.user_utilities_se import User
 
 #User
 user = User()
 
-def test_register_in_website(base, main, sing_up, register):
+def test_register_in_website(base, main, sign_up, register):
     
     #test
     base.return_to_base_page()
-    main.sing_in().click()
-    sing_up.register().click()
+    main.sign_in().click()
+    sign_up.register().click()
     register.user_id().send_keys(data=user.user_credentials.get('id'))
     register.new_password().send_keys(data=user.user_credentials.get('password'))
     register.repeat_password().send_keys(data='12345')
@@ -35,16 +35,15 @@ def test_register_in_website(base, main, sing_up, register):
     register.mylist().click()
     register.mybanner().click()
     register.save_account().click()
-    main.sing_in().click()
-    sing_up.username().send_keys(data=user.user_credentials.get('id'))
-    sing_up.password().clean_text()
-    sing_up.password().send_keys(data=user.user_credentials.get('password'))
-    sing_up.login().click()
+    main.sign_in().click()
+    sign_up.username().send_keys(data=user.user_credentials.get('id'))
+    sign_up.password().clean_text()
+    sign_up.password().send_keys(data=user.user_credentials.get('password'))
+    sign_up.login().click()
 
-    #print(main.welcome().get_attribute(), " = this is the text")
-    #assert_that(main.welcome().get_attribute()).contains('Welcome')
+    assert_that(main.welcome().get_text()).contains('Welcome')
     assert_that(main.welcome().element_exit(time=5)).is_true()
-    assert_that(main.sing_out().element_exit(time=5)).is_true()
+    assert_that(main.sign_out().element_exit(time=5)).is_true()
     assert_that(main.my_account().element_exit(time=5)).is_true()
     assert_that(main.main_picture().element_exit(time=5)).is_true()
 
@@ -91,3 +90,12 @@ def test_update_account_data(base, main, user_information):
     assert_that(user_information.state().get_attribute(name='value')).is_equal_to('new')
     assert_that(user_information.zip().get_attribute(name='value')).is_equal_to('new')
     assert_that(user_information.country().get_attribute(name='value')).is_equal_to('new')
+
+def test_sign_out(base, main):
+
+    #test
+    base.return_to_base_page()
+    main.sign_out().click()
+
+    assert_that(main.sign_in().element_exit(time=5)).is_true()
+    #assert_that(main.my_account().element_exit(time=5)).is_false()

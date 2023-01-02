@@ -4,7 +4,7 @@ import pytest
 #local
 from selenium_ui.pages.base_page import BasePage
 from selenium_ui.pages.main_page import MainPage
-from selenium_ui.pages.sing_up import SingUpPage
+from selenium_ui.pages.sign_up import SingUpPage
 from selenium_ui.pages.register_page import RegisterPage
 from selenium_ui.pages.shopping_cart_page import ShoppingCartPage
 from selenium_ui.pages.payment_details_page import PaymentDetailsPages
@@ -22,9 +22,9 @@ def main():
     return main_page
 
 @pytest.fixture
-def sing_up():
-    sing_up = SingUpPage()
-    return sing_up
+def sign_up():
+    sign_up = SingUpPage()
+    return sign_up
 
 @pytest.fixture
 def register():

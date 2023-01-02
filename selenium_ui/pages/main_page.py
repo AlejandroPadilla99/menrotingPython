@@ -9,8 +9,8 @@ class MainPage:
    
     class locators:
         
-        sing_in = (By.XPATH, "/html/body/div[1]/div[2]/div/a[2]")
-        sing_out = (By.XPATH, "//a[text()='Sign Out']")
+        sign_in = (By.XPATH, "/html/body/div[1]/div[2]/div/a[2]")
+        sign_out = (By.XPATH, "//a[text()='Sign Out']")
         my_account = (By.XPATH, "//a[text()='My Account']")
         main_picture = (By.XPATH, "//map[@name='estoremap']")
         search_bar =  (By.XPATH, "//input[@name='keyword']")
@@ -23,11 +23,11 @@ class MainPage:
         add_cart = (By.XPATH, "(//table//tr//td)[5]")
 
 
-    def sing_in(self) -> Element:
-        return Element(driver=driver, locator=self.locators.sing_in)
+    def sign_in(self) -> Element:
+        return Element(driver=driver, locator=self.locators.sign_in)
 
-    def sing_out(self) -> Element:
-        return Element(driver=driver, locator=self.locators.sing_out)
+    def sign_out(self) -> Element:
+        return Element(driver=driver, locator=self.locators.sign_out)
 
     def my_account(self) -> Element:
         return Element(driver=driver, locator=self.locators.my_account)

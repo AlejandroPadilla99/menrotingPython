@@ -20,7 +20,7 @@ class Element:
         return self._find_element().get_attribute(name=name)
     
     def get_text(self) -> None:
-        self._find_element().text
+        return self._find_element().text
     
     def clean_text(self) -> None:
         self._find_element().clear()
