@@ -1,5 +1,6 @@
 #lib
 from selenium.common.exceptions import NoSuchElementException
+from selenium.webdriver.support.select import Select
 
 class Element:
     def __init__(self, driver: object, locator: tuple) -> None:
@@ -10,7 +11,7 @@ class Element:
         self._find_element().click()
 
     def select_by_value(self, data: str) -> None:
-        self._find_element().select_by_value(data)
+        Select(self._find_element()).select_by_value(data)
     
     def send_keys(self, data: str) -> None:
         self._find_element().clear()
