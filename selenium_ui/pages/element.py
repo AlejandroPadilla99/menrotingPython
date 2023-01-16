@@ -13,8 +13,9 @@ class Element:
     def select_by_value(self, data: str) -> None:
         Select(self._find_element()).select_by_value(data)
     
-    def send_keys(self, data: str) -> None:
-        self._find_element().clear()
+    def send_keys(self, data: str, clear: bool = False) -> None:
+        if(clear):
+            self._find_element().clear()
         self._find_element().send_keys(data)
 
     def get_attribute(self, name: str) -> str:

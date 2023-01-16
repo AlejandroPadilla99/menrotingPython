@@ -9,3 +9,4 @@ class SingletonDriver:
         options = webdriver.ChromeOptions()
 
         self.driver = webdriver.Chrome(service=service, options=options)
+        self.driver.implicitly_wait(5)
