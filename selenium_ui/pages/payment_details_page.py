@@ -4,8 +4,11 @@ from selenium.webdriver.common.by import By
 #localA
 from selenium_ui import driver
 from selenium_ui.pages.element import Element
+from selenium_ui.pages.base_page import BasePage
 
-class PaymentDetailsPages():
+class PaymentDetailsPages(BasePage):
+    def __init__(self) -> None:
+        super().__init__()
 
     class locators():
         continue_button = (By.XPATH, "//input[@name='newOrder']")
@@ -21,31 +24,31 @@ class PaymentDetailsPages():
         
 
     def continue_button(self) -> Element:
-        return Element(driver=driver, locator=self.locators.continue_button)
+        return self.create_element(locator=self.locators.continue_button)
     
     def thank_you(self) -> Element:
-        return Element(driver=driver, locator=self.locators.thank_you)
+        return self.create_element(locator=self.locators.thank_you)
     
     def first_name(self) -> Element:
-        return Element(driver=driver, locator=self.locators.first_name)
+        return self.create_element(locator=self.locators.first_name)
     
     def last_name(self) -> Element:
-        return Element(driver=driver, locator=self.locators.last_name)
+        return self.create_element(locator=self.locators.last_name)
     
     def address1(self) -> Element:
-        return Element(driver=driver, locator=self.locators.address1)
+        return self.create_element(locator=self.locators.address1)
     
     def address2(self) -> Element:
-        return Element(driver=driver, locator=self.locators.address2)
+        return self.create_element(locator=self.locators.address2)
     
     def city(self) -> Element:
-        return Element(driver=driver, locator=self.locators.city)
+        return self.create_element(locator=self.locators.city)
     
     def state(self) -> Element:
-        return Element(driver=driver, locator=self.locators.state)
+        return self.create_element(locator=self.locators.state)
     
     def zip(self) -> Element:
-        return Element(driver=driver, locator=self.locators.zip)
+        return self.create_element(locator=self.locators.zip)
     
     def country(self) -> Element:
-        return Element(driver=driver, locator=self.locators.country)
+        return self.create_element(locator=self.locators.country)

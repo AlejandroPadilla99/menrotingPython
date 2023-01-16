@@ -4,8 +4,11 @@ from selenium.webdriver.common.by import By
 #local
 from selenium_ui import driver
 from selenium_ui.pages.element import Element
+from selenium_ui.pages.base_page import BasePage
 
-class SingUpPage():
+class SingUpPage(BasePage):
+    def __init__(self) -> None:
+        super().__init__()
 
     class locators():
         username = (By.XPATH, "//input[@name='username']")
@@ -14,14 +17,14 @@ class SingUpPage():
         register = (By.XPATH, "//a[contains(.,'Register Now!')]")
 
     def username(self) -> Element:
-        return Element(driver=driver, locator=self.locators.username)
+        return self.create_element(locator=self.locators.username)
 
     def password(self) -> Element:
-        return Element(driver=driver, locator=self.locators.password)
+        return self.create_element(locator=self.locators.password)
     
     def login(self) -> Element:
-        return Element(driver=driver, locator=self.locators.login)
+        return self.create_element(locator=self.locators.login)
     
     def register(self) -> Element:
-        return Element(driver=driver, locator=self.locators.register)
+        return self.create_element(locator=self.locators.register)
     

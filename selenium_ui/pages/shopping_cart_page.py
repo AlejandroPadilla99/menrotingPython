@@ -3,8 +3,11 @@ from selenium.webdriver.common.by import By
 #local
 from selenium_ui import driver
 from selenium_ui.pages.element import Element
+from selenium_ui.pages.base_page import BasePage
 
-class ShoppingCartPage():
+class ShoppingCartPage(BasePage):
+    def __init__(self) -> None:
+        super().__init__()
    
     class locators():
         quantity = (By.XPATH, "(//table//input)[1]")
@@ -13,13 +16,13 @@ class ShoppingCartPage():
         checkout = (By.XPATH, "//a[text()='Proceed to Checkout']")
 
     def quantity(self) -> Element:
-        return Element(driver=driver, locator=self.locators.quantity)
+        return self.create_element(locator=self.locators.quantity)
         
     def remove(self) -> Element:
-        return Element(driver=driver, locator=self.locators.remove)
+        return self.create_element(locator=self.locators.remove)
 
     def update_cart(self) -> Element:
-        return Element(driver=driver, locator=self.locators.update_cart)
+        return self.create_element(locator=self.locators.update_cart)
 
     def checkout(self) -> Element:
-        return Element(driver=driver, locator=self.locators.checkout)
+        return self.create_element(locator=self.locators.checkout)

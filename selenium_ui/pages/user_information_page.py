@@ -4,9 +4,12 @@ from selenium.webdriver.common.by import By
 #local
 from selenium_ui import driver
 from selenium_ui.pages.element import Element
+from selenium_ui.pages.base_page import BasePage
 
 
-class UserInformation:
+class UserInformation(BasePage):
+    def __init__(self) -> None:
+        super().__init__()
 
     class locators:
         first_name = (By.XPATH, "//input[@name='account.firstName']")
@@ -22,34 +25,34 @@ class UserInformation:
         save = (By.XPATH, "//input[@name='editAccount']")
 
     def first_name(self) -> Element:
-        return Element(driver=driver, locator=self.locators.first_name)
+        return self.create_element(locator=self.locators.first_name)
     
     def last_name(self) -> Element:
-        return Element(driver=driver, locator=self.locators.last_name)
+        return self.create_element(locator=self.locators.last_name)
 
     def email(self) -> Element:
-        return Element(driver=driver, locator=self.locators.email)
+        return self.create_element(locator=self.locators.email)
 
     def phone(self) -> Element:
-        return Element(driver=driver, locator=self.locators.phone)
+        return self.create_element(locator=self.locators.phone)
 
     def address1(self) -> Element:
-        return Element(driver=driver, locator=self.locators.address1)
+        return self.create_element(locator=self.locators.address1)
 
     def address2(self) -> Element:
-        return Element(driver=driver, locator=self.locators.address2)
+        return self.create_element(locator=self.locators.address2)
 
     def city(self) -> Element:
-        return Element(driver=driver, locator=self.locators.city)
+        return self.create_element(locator=self.locators.city)
     
     def state(self) -> Element:
-        return Element(driver=driver, locator=self.locators.state)
+        return self.create_element(locator=self.locators.state)
     
     def zip(self) -> Element:
-        return Element(driver=driver, locator=self.locators.zip)
+        return self.create_element(locator=self.locators.zip)
     
     def country(self) -> Element:
-        return Element(driver=driver, locator=self.locators.country)
+        return self.create_element(locator=self.locators.country)
     
     def save(self) -> Element:
-        return Element(driver=driver, locator=self.locators.save)
+        return self.create_element(locator=self.locators.save)
