@@ -20,6 +20,9 @@ class Element:
 
     def get_attribute(self, name: str) -> str:
         return self._find_element().get_attribute(name=name)
+
+    def get_value(self)  -> str:
+        return self._find_element().get_attribute(name='value')
     
     def get_text(self) -> None:
         return self._find_element().text
