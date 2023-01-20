@@ -23,6 +23,7 @@ class MainPage(BasePage):
         cats_section = (By.XPATH, "//img[contains(@src,'cats_icon')]")
         firts_element_search = (By.XPATH, "(//tbody//td//a)[2]")
         add_cart = (By.XPATH, "(//table//tr//td)[5]")
+        error_empty = (By.XPATH, "//ul/li[contains(text(),'Please enter a keyword to search for')]")
 
 
     def sign_in(self) -> Element:
@@ -60,3 +61,6 @@ class MainPage(BasePage):
     
     def cats_section(self) -> Element: 
         return self.create_element(locator=self.locators.cats_section)
+    
+    def error_empty(self) -> Element:
+        return self.create_element(locator=self.locators.error_empty)

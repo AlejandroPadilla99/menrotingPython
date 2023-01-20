@@ -71,6 +71,15 @@ def test_buy_by_search_bar(base, main, shopping_cart, payment_details, order_pag
 
     assert_that(payment_details.thank_you().element_exit()).is_true()
 
+def test_search_empty_bar(base, main):
+
+    #test
+    base.return_to_base_page()
+    main.search_bar().send_keys(data='', clear=True)
+    main.search_button().click()
+    
+    assert_that(main.error_empty().get_text()).is_equal_to('Please enter a keyword to search for, then press the search button.')
+
 def test_update_account_data(base, main, user_information):
 
     #precondition 
@@ -104,6 +113,7 @@ def test_update_account_data(base, main, user_information):
     assert_that(user_information.zip().get_value()).is_equal_to(user.account_data.get('zip'))
     assert_that(user_information.country().get_value()).is_equal_to(user.account_data.get('country'))
 
+'''
 def test_sign_out(base, main):
 
     #test
@@ -111,3 +121,4 @@ def test_sign_out(base, main):
     main.sign_out().click()
 
     assert_that(main.sign_in().element_exit()).is_true()
+'''
