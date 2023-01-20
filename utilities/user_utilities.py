@@ -11,7 +11,6 @@ class UserUtilities:
         self.user_as_json = None
         self.create_randon_user()
     
-
     def create_randon_user(self) -> None:
         self.user_as_dic = {
             'id': self.id,
@@ -23,4 +22,4 @@ class UserUtilities:
             'phone': faker.phone_number(),
             "userStatus": random.randint(1,5)
         }
-        self.user_as_json = json.dumps(self.user_as_dic,indent = 4)
+        self.user_as_json = json.dumps(self.user_as_dic,indent = 1)

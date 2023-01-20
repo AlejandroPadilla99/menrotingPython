@@ -1,12 +1,10 @@
-
 #lib
 import random
 import json
-from dbm import dumb
 from faker import Faker
 from faker.providers import DynamicProvider
 
-
+#global
 fake = Faker() 
 
 class PetUtilities:
@@ -22,18 +20,16 @@ class PetUtilities:
         a string that contains all the pet information in format json
     pet_as_dic : dict
         a dict that containes all the pet information
+    
     '''
     
     def __init__(self) -> None:
         self.id = random.randint(0,9223372036854053000) 
         self.__create_provides_faker()
         self.make_randon_pet()
-    
-    
+     
     def make_pet_to_json(self) -> None: 
-        #check indent = 4 
-        self.pet_as_json = json.dumps(self.pet_as_dic,indent = 4)
-
+        self.pet_as_json = json.dumps(self.pet_as_dic,indent = 1)
 
     def make_randon_pet(self) -> None:
         '''
@@ -76,8 +72,4 @@ class PetUtilities:
         )
 
         fake.add_provider(pet_category_provider)
-        fake.add_provider(pet_status_provider)
-
-
-
-    
+        fake.add_provider(pet_status_provider)    
