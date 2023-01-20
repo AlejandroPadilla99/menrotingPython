@@ -3,7 +3,7 @@ from api.core import CoreApi, Response
 from api.base_header import baseHeader
 
 
-class usersEndPoint(baseHeader):
+class UsersEndPoint(baseHeader):
 
     def __init__(self):
         super().__init__()
@@ -25,10 +25,10 @@ class usersEndPoint(baseHeader):
             A object that contain the response from the request 
         '''
 
-        response = self.request.get(self.base_url+"/user/login")
+        response = self.request.get(url=self.base_url+"/user/login")
         return response
     
-    def logout_user(self) -> Response :
+    def logout_user(self) -> Response:
         '''
         Return
         ------
@@ -36,7 +36,7 @@ class usersEndPoint(baseHeader):
             A object that contain the response from the request
         '''
 
-        response = self.request.get(self.base_url+"/user/logout")
+        response = self.request.get(url=self.base_url+"/user/logout")
         return response
     
     def create_user(self, body: str) -> Response:
@@ -52,7 +52,5 @@ class usersEndPoint(baseHeader):
             A object that contain the response from the request
         '''
        
-        response  = self.request.post(self.base_url+"/user", body, self.headers)
-        return response
-    
-    
+        response  = self.request.post(url=self.base_url+"/user", playload=body, headers=self.headers)
+        return response 

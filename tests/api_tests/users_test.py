@@ -2,12 +2,12 @@
 from assertpy import assert_that
 
 #locals
-from api.user import usersEndPoint
+from api.user import UsersEndPoint
 from utilities.user_utilities import UserUtilities
 from utilities.schemas import Schemas
 
 #Global objects
-users = usersEndPoint()
+users = UsersEndPoint()
 schema = Schemas()
 
 

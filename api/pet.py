@@ -23,7 +23,7 @@ class PetEndPoints(baseHeader):
             A object that contain the response from the request
         '''
 
-        response = self.request.post(self.base_url+"/pet", body, self.headers)
+        response = self.request.post(url=self.base_url+"/pet", playload=body, headers=self.headers)
         return response
     
     def update_pet(self, body: str) -> Response:
@@ -39,7 +39,7 @@ class PetEndPoints(baseHeader):
             A object that contain the response from the request
         '''
 
-        response = self.request.put(self.base_url+"/pet", body, self.headers)
+        response = self.request.put(url=self.base_url+"/pet", payload=body, headers=self.headers)
         return response
    
     def get_pet_by_id(self, pet_id: str) -> Response:
@@ -55,7 +55,7 @@ class PetEndPoints(baseHeader):
             A object that contain the response from the request
         '''
 
-        response = self.request.get(self.base_url+f'/pet/{pet_id}')
+        response = self.request.get(url=self.base_url+f'/pet/{pet_id}')
         return response
    
     def delete_pet_by_id(self, pet_id: str) -> Response:
@@ -70,5 +70,5 @@ class PetEndPoints(baseHeader):
         Response: Object
             A object that contain the response from the request
         '''
-        response = self.request.delete(self.base_url+f'/pet/{pet_id}')
+        response = self.request.delete(url=self.base_url+f'/pet/{pet_id}')
         return response

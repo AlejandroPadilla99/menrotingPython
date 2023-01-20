@@ -3,7 +3,6 @@ import requests
 import logging
 from dataclasses import dataclass
 
-
 #logging
 logging.basicConfig(filename="newfiloe.log", format='%(asctime)s %(message)s', filemode='w')
 
@@ -17,7 +16,6 @@ class Response:
     as_dict : object
     headers : dict
     
-
 class CoreApi:
     def get(self, url: str) -> Response:
         response = requests.get(url)
@@ -40,7 +38,7 @@ class CoreApi:
         return self.__get__responses(response)
 
     @staticmethod
-    def __print_logs(method, url, playload, headers, response) -> None:
+    def __print_logs(method: str, url: str, playload: str, headers: str, response: str) -> None:
         logger.debug("---------- Request -------------")
         logger.info("mehtod = " + method)
         logger.info("url = " + url)

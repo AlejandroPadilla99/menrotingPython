@@ -11,7 +11,6 @@ from utilities.custom_asserts import assert_validate_dic
 pets = PetEndPoints() 
 schemas = Schemas()
 
-
 def test_create_pet():
     
     #preconditons
