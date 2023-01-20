@@ -30,8 +30,8 @@ class Element:
     def clean_text(self) -> None:
         self._find_element().clear()
     
-    def element_exit(self, time: int) -> None:
-        self._find_element(implicitly_wait=time)
+    def element_exit(self) -> None:
+        self._find_element(implicitly_wait=3)
         return True
      
     def _find_element(self, implicitly_wait: int = 3) -> object:

@@ -1,7 +1,5 @@
 #lib
-from time import sleep
 from assertpy import assert_that
-import time
 
 
 #fixtures
@@ -44,10 +42,10 @@ def test_register_in_website(base, main, sign_up, register):
     sign_up.login().click()
 
     assert_that(main.welcome().get_text()).contains('Welcome')
-    assert_that(main.welcome().element_exit(time=5)).is_true()
-    assert_that(main.sign_out().element_exit(time=5)).is_true()
-    assert_that(main.my_account().element_exit(time=5)).is_true()
-    assert_that(main.main_picture().element_exit(time=5)).is_true()
+    assert_that(main.welcome().element_exit()).is_true()
+    assert_that(main.sign_out().element_exit()).is_true()
+    assert_that(main.my_account().element_exit()).is_true()
+    assert_that(main.main_picture().element_exit()).is_true()
 
 def test_buy_by_search_bar(base, main, shopping_cart, payment_details, order_page):
     
@@ -71,7 +69,7 @@ def test_buy_by_search_bar(base, main, shopping_cart, payment_details, order_pag
     payment_details.continue_button().click()
     order_page.confirm().click()
 
-    assert_that(payment_details.thank_you().element_exit(time=5)).is_true()
+    assert_that(payment_details.thank_you().element_exit()).is_true()
 
 def test_update_account_data(base, main, user_information):
 
@@ -112,4 +110,4 @@ def test_sign_out(base, main):
     base.return_to_base_page()
     main.sign_out().click()
 
-    assert_that(main.sign_in().element_exit(time=5)).is_true()
+    assert_that(main.sign_in().element_exit()).is_true()
