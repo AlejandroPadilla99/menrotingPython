@@ -10,7 +10,6 @@ from utilities.schemas import Schemas
 users = UsersEndPoint()
 schema = Schemas()
 
-
 def test_create_user():
     
     #Preconditions

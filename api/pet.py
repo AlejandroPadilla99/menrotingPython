@@ -39,7 +39,7 @@ class PetEndPoints(baseHeader):
             A object that contain the response from the request
         '''
 
-        response = self.request.put(url=self.base_url+"/pet", payload=body, headers=self.headers)
+        response = self.request.put(url=self.base_url+"/pet", playload=body, headers=self.headers)
         return response
    
     def get_pet_by_id(self, pet_id: str) -> Response:

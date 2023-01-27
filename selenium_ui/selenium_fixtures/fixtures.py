@@ -13,40 +13,32 @@ from selenium_ui.pages.user_information_page import UserInformation
 
 @pytest.fixture
 def base():
-    base_page = BasePage()
-    return base_page
+    return  BasePage()
 
 @pytest.fixture
 def main():
-    main_page = MainPage()
-    return main_page
+    return MainPage()
 
 @pytest.fixture
 def sign_up():
-    sign_up = SingUpPage()
-    return sign_up
+    return SingUpPage()
 
 @pytest.fixture
 def register():
-    register = RegisterPage()
-    return register
+    return RegisterPage()
 
 @pytest.fixture
 def shopping_cart():
-    shopping_cart = ShoppingCartPage()
-    return shopping_cart
+    return ShoppingCartPage()
 
 @pytest.fixture
 def payment_details():
-    payment_details = PaymentDetailsPages()
-    return payment_details
+    return  PaymentDetailsPages()
 
 @pytest.fixture
 def order_page():
-    order_page = OderPage()
-    return order_page
+    return OderPage()
 
 @pytest.fixture
 def user_information():
-    user_information = UserInformation()
-    return user_information
+    return UserInformation()

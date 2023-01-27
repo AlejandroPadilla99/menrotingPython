@@ -9,7 +9,7 @@ from selenium_ui.pages.base_page import BasePage
 class CatalogPage(BasePage):
     def __init__(self) -> None:
         super().__init__()
-   
+    
     class locators():
         add_to_cart = (By.XPATH, "//a[text()='Add to Cart']")
 

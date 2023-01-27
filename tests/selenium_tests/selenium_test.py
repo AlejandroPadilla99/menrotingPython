@@ -1,7 +1,6 @@
 #lib
 from assertpy import assert_that
 
-
 #fixtures
 from selenium_ui.selenium_fixtures.fixtures import base, main, sign_up, register, shopping_cart, payment_details, order_page, user_information
 from selenium_ui.utilities_selenium.user_utilities_se import User
