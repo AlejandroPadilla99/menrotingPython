@@ -1,61 +1,18 @@
 #lib
-import pytest
+from assertpy import assert_that
 
-#local
-from selenium_ui.pages.base_page import BasePage
-from selenium_ui.pages.main_page import MainPage
-from selenium_ui.pages.sign_up import SingUpPage
-from selenium_ui.pages.register_page import RegisterPage
-from selenium_ui.pages.shopping_cart_page import ShoppingCartPage
-from selenium_ui.pages.payment_details_page import PaymentDetailsPages
-from selenium_ui.pages.order_page import OderPage
-from selenium_ui.pages.user_information_page import UserInformation
-
+#fixtures
+from selenium_ui.selenium_fixtures.fixtures import base, main, sign_up, register
 from selenium_ui.utilities_selenium.user_utilities_se import User
 
+#User
+user = User()
+user.create_account_data()
+user.create_profile_data(language_preference='japanese', favorite_category='CATS', my_list=True, my_banner=True)
 
-@pytest.fixture
-def base():
-    return  BasePage()
-
-@pytest.fixture
-def main():
-    return MainPage()
-
-@pytest.fixture
-def sign_up():
-    return SingUpPage()
-
-@pytest.fixture
-def register():
-    return RegisterPage()
-
-@pytest.fixture
-def shopping_cart():
-    return ShoppingCartPage()
-
-@pytest.fixture
-def payment_details():
-    return  PaymentDetailsPages()
-
-@pytest.fixture
-def order_page():
-    return OderPage()
-
-@pytest.fixture
-def user_information():
-    return UserInformation()
-
-@pytest.fixture
-def session():
-    user = User()
-
-    base = BasePage()
-    main = MainPage()
-    sign_up = SingUpPage()
-    register = RegisterPage()
-
-    base.logout_session() 
+def test_register_in_website(base, main, sign_up, register):
+    
+    #test
     base.return_to_base_page()
     main.sign_in().click()
     sign_up.register().click()
@@ -83,4 +40,12 @@ def session():
     sign_up.password().send_keys(data=user.user_credentials.get('password'), clear=True)
     sign_up.login().click()
 
-    return user
+    assert_that(main.welcome().get_text()).contains('Welcome')
+    assert_that(main.welcome().element_exit()).is_true()
+    assert_that(main.sign_out().element_exit()).is_true()
+    assert_that(main.my_account().element_exit()).is_true()
+    assert_that(main.main_picture().element_exit()).is_true()
+
+    #logout
+    base.return_to_base_page()
+    main.sign_out().click()

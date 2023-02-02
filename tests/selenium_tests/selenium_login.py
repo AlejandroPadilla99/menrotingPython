@@ -1,15 +1,22 @@
 #lib
 from assertpy import assert_that
 
+#local
+from config import USER, PASSWORD
+
 #fixtures
 from selenium_ui.selenium_fixtures.fixtures import base, main, sign_up
 from selenium_ui.utilities_selenium.user_utilities_se import User
 
-user = 'bts'
-password = '12345'
+user = USER
+password = PASSWORD
+
+#anadir el logout antes de hacer el login 
+#mover los usuarios a un archivo de config
 
 def test_login(base, main, sign_up):
 
+    base.logout_session()
     base.return_to_base_page()
     sign_up.username().send_keys(data=user, clear=True)
     sign_up.password().clean_text()
