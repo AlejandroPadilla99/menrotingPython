@@ -1,5 +1,3 @@
-import time
-import pdb
 #lib
 from assertpy import assert_that
 

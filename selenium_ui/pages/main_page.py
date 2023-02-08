@@ -6,6 +6,9 @@ from selenium_ui import driver
 from selenium_ui.pages.element import Element
 from selenium_ui.pages.base_page import BasePage
 
+#mirar el stack the python 
+
+
 class MainPage(BasePage):
     def __init__(self) -> None:
         super().__init__()

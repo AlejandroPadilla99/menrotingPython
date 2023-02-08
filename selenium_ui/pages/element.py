@@ -1,4 +1,6 @@
 #lib
+import inspect
+import logging
 from selenium.common.exceptions import NoSuchElementException
 from selenium.webdriver.support.select import Select
 
@@ -35,7 +37,28 @@ class Element:
         return True
      
     def _find_element(self, implicitly_wait: int = 3) -> object:
+        self._logging_stack()
         try: 
             return self.driver.find_element(*self.locator)
         except NoSuchElementException:
             return None
+
+    def _logging_stack(self, limit=None, start=0) -> None:
+        logger = logging.getLogger()
+        logger.setLevel(logging.DEBUG)
+        stack = inspect.stack()
+
+        here = stack[3]
+
+        
+        logger.info('------------------------------------------------------------------------')
+        #for i in here:
+        frame, filename, lineno, function, code_context, index = here
+        
+        data = code_context[0].split('.')
+        logger.info("Page = "+ data[0])
+        logger.info("Element = "+ data[1])
+        logger.info("Action = "  + data[2])
+        
+        #frame, filename, lineno, function, code_context, index = here
+        logger.info('------------------------------------------------------------------------') 

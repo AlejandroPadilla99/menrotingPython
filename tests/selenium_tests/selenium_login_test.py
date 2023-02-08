@@ -1,3 +1,4 @@
+import inspect, logging
 #lib
 from assertpy import assert_that
 
@@ -23,7 +24,8 @@ def test_login(base, main, sign_up):
     sign_up.password().send_keys(data=password, clear=True)
     sign_up.login().click()
 
-    assert_that(main.welcome().get_text()).contains('Welcome')
+    assert_that(main.welcome().get_text()).contains('Patita')
+    #assert_that(main.welcome().get_text()).contains('Welcome')
     assert_that(main.welcome().element_exit()).is_true()
     assert_that(main.sign_out().element_exit()).is_true()
     assert_that(main.my_account().element_exit()).is_true()
