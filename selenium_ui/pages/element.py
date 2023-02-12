@@ -1,11 +1,19 @@
 #lib
 import inspect
 import logging
+import traceback
 from selenium.common.exceptions import NoSuchElementException
 from selenium.webdriver.support.select import Select
 
+logger = logging.getLogger()
+logger.setLevel(logging.DEBUG)
+
+
 class Element:
     def __init__(self, driver: object, locator: tuple) -> None:
+        stack_status = inspect.stack()
+        trace = traceback.extract_stack()
+        self._logging_stack(stack=stack_status, locator=locator, trace=trace)
         self.driver = driver
         self.locator = locator
     
@@ -37,28 +45,18 @@ class Element:
         return True
      
     def _find_element(self, implicitly_wait: int = 3) -> object:
-        self._logging_stack()
         try: 
             return self.driver.find_element(*self.locator)
         except NoSuchElementException:
             return None
 
-    def _logging_stack(self, limit=None, start=0) -> None:
-        logger = logging.getLogger()
-        logger.setLevel(logging.DEBUG)
-        stack = inspect.stack()
-
-        here = stack[3]
+    def _logging_stack(self, stack, locator, trace) -> None:
 
         
-        logger.info('------------------------------------------------------------------------')
-        #for i in here:
-        frame, filename, lineno, function, code_context, index = here
-        
-        data = code_context[0].split('.')
-        logger.info("Page = "+ data[0])
-        logger.info("Element = "+ data[1])
-        logger.info("Action = "  + data[2])
-        
-        #frame, filename, lineno, function, code_context, index = here
-        logger.info('------------------------------------------------------------------------') 
+        for i in stack:
+            frame, filename, lineno, function, code_context, index = i
+            if "selenium_tests" in filename:
+                data = code_context[0]
+                data = data.split('.')
+                if not "assert_that" in data[0]:
+                    logger.info("\n\tPage: " + data[0]+ "\n\tElement: "+ data [1] +  "\n\tAction: " + data[2])
