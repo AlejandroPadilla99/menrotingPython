@@ -12,9 +12,6 @@ from selenium_ui.utilities_selenium.user_utilities_se import User
 user = USER
 password = PASSWORD
 
-#anadir el logout antes de hacer el login 
-#mover los usuarios a un archivo de config
-
 def test_login(base, main, sign_up):
 
     base.logout_session()
@@ -25,8 +22,6 @@ def test_login(base, main, sign_up):
     sign_up.login().click()
 
     assert_that(main.welcome().get_text()).contains('Patita')
-    #assert_that(main.welcome().get_text()).contains('Welcome')
-    assert_that(main.welcome().element_exit()).is_true()
     assert_that(main.sign_out().element_exit()).is_true()
     assert_that(main.my_account().element_exit()).is_true()
     assert_that(main.main_picture().element_exit()).is_true()

@@ -4,10 +4,7 @@ import logging
 import traceback
 from selenium.common.exceptions import NoSuchElementException
 from selenium.webdriver.support.select import Select
-
-logger = logging.getLogger()
-logger.setLevel(logging.DEBUG)
-
+from conftest import logger
 
 class Element:
     def __init__(self, driver: object, locator: tuple) -> None:

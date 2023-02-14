@@ -72,6 +72,7 @@ def test_update_account_data(base, main, user_information, session):
     user_information.save().click()
     base.return_to_base_page()
     main.my_account().click()
+
     assert_that(user_information.first_name().get_value()).is_equal_to(user.account_data.get('first_name'))
     assert_that(user_information.last_name().get_value()).is_equal_to(user.account_data.get('second_name'))
     assert_that(user_information.email().get_value()).is_equal_to(user.account_data.get('email'))

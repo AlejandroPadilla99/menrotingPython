@@ -40,7 +40,7 @@ def test_register_in_website(base, main, sign_up, register):
     sign_up.password().send_keys(data=user.user_credentials.get('password'), clear=True)
     sign_up.login().click()
 
-    assert_that(main.welcome().get_text()).contains('Welcome')
+    assert_that(main.welcome().get_text()).contains(user.account_data.get('first_name'))
     assert_that(main.welcome().element_exit()).is_true()
     assert_that(main.sign_out().element_exit()).is_true()
     assert_that(main.my_account().element_exit()).is_true()
