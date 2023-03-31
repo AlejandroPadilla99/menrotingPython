@@ -1,6 +1,5 @@
 #lib
 import inspect
-import logging
 import traceback
 from selenium.common.exceptions import NoSuchElementException
 from selenium.webdriver.support.select import Select
@@ -48,8 +47,7 @@ class Element:
             return None
 
     def _logging_stack(self, stack, locator, trace) -> None:
-
-        
+ 
         for i in stack:
             frame, filename, lineno, function, code_context, index = i
             if "selenium_tests" in filename:

@@ -1,13 +1,12 @@
 #lib
 import requests
-import logging
 from dataclasses import dataclass
 
-#logging
-logging.basicConfig(filename="newfiloe.log", format='%(asctime)s %(message)s', filemode='w')
+#logger 
+#from conftest import logger
+import logging
 
-logger = logging.getLogger()
-logger.setLevel(logging.DEBUG)
+logger = logging.getLogger('api_testing')
 
 @dataclass
 class Response:
@@ -39,12 +38,12 @@ class CoreApi:
 
     @staticmethod
     def __print_logs(method: str, url: str, playload: str, headers: str, response: str) -> None:
-        logger.debug("---------- Request -------------")
+        logger.info("---------- Request -------------")
         logger.info("mehtod = " + method)
         logger.info("url = " + url)
         logger.info("body = " + playload)
         logger.info("headers = " + str(headers))
-        logger.debug("---------- Response ------------")
+        logger.info("---------- Response ------------")
         logger.info("status code = " + str(response.status_code))
         logger.info("body = " + response.text)
 

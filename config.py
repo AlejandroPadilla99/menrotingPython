@@ -1,3 +1,3 @@
 URL = "https://petstore.swagger.io/v2"
-USER = "BTS"
+USER = "bts"
 PASSWORD = "12345"
